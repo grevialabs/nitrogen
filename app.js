@@ -21,12 +21,14 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 /* Routes */
+const v1 = '/v1/';
+// app.use('/v1', v1);
+
 const index = require('./routes/Index');
-app.use('/', index);
+app.use(v1 + 'index', index);
 
 const users = require('./routes/Users');
-app.use('/users', users);
-
+app.use(v1 + 'users', users);
 
 /* Export to server.js */
 module.exports = app;

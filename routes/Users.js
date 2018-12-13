@@ -5,10 +5,10 @@ const Key = require('../models/Key');
 const constant = require('../helpers/Constants');
 
 /* GET all users params {key,start,limit} */
-router.get(constant.API_GET_ALL_USERS, function(req, res, next) {
+router.get('/getList', function(req, res, next) {
     Key.check(req.query.key, function(err,rows) {
         if(rows.length > 0) { // key success
-            User.getAllUsers(
+            User.getList(
                 Number(req.query.start), 
                 Number(req.query.limit), 
                 function(errRes,rowsRes) {
@@ -26,10 +26,10 @@ router.get(constant.API_GET_ALL_USERS, function(req, res, next) {
 });
 
 /* GET user by ID params {key,id} */
-router.get(constant.API_GET_USER_BY_ID, function(req, res, next) {
+router.get('/get', function(req, res, next) {
     Key.check(req.query.key, function(err,rows) {
         if(rows.length > 0) { // key success
-            User.getUserById(
+            User.get(
                 Number(req.query.id), 
                 function(errRes,rowsRes) {
                     if(errRes) {
@@ -46,7 +46,7 @@ router.get(constant.API_GET_USER_BY_ID, function(req, res, next) {
 });
 
 /* POST add user params {key,name,email,password} */
-router.post(constant.API_ADD_USER, function(req,res,next) {
+router.post('/add', function(req,res,next) {
     Key.check(req.body.key, function(err,rows) {
         if(rows.length > 0) { // key success
             User.addUser(
@@ -70,7 +70,7 @@ router.post(constant.API_ADD_USER, function(req,res,next) {
 });
 
 /* UPDATE user params {key,id,name,email,password} */
-router.post(constant.API_UPDATE_USER,function(req,res,next) {
+router.put('/update',function(req,res,next) {
     Key.check(req.body.key, function(err,rows) {
         if(rows.length > 0) { // key success
             User.updateUser(
@@ -95,7 +95,7 @@ router.post(constant.API_UPDATE_USER,function(req,res,next) {
 });
 
 /* DELETE user params {key,id} */
-router.post(constant.API_DELETE_USER,function(req,res,next) {
+router.delete('/delete',function(req,res,next) {
     Key.check(req.body.key, function(err,rows) {
         if(rows.length > 0) { // key success
             User.deleteUser(req.body.id, function(errRes,rowsRes) {

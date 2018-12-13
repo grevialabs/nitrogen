@@ -5,6 +5,9 @@ const Constant = {
     API_ADD_USER: '/add_user', // {key,name,email,password}
     API_DELETE_USER: '/delete_user', // {key,id}
     API_UPDATE_USER: '/update_user', // {key,id,name,email,password}
+    //-----------------
+    // API_USER: '/users',
+    // GET_LIST: '/get_list',
     
 }
 
