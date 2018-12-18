@@ -1,11 +1,12 @@
 const mysql = require('mysql');
+const config = require('./config/config');
 const connection = mysql.createPool({
 
-    host:'localhost',
-    user:'admin',
-    password:'admin',
-    database:'apinode',
-    port:3306
+    host: config.db.host,
+    user: config.db.user,
+    password: config.db.password,
+    database: config.db.database,
+    port: config.db.port
 
 });
 

@@ -24,6 +24,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 const v1 = '/v1/';
 // app.use('/v1', v1);
 
+// console.log
+
 const index = require('./routes/Index');
 app.use(v1 + 'index', index);
 

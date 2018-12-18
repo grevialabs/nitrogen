@@ -1,5 +1,9 @@
 const app = require('./app');
-const port = 3001;
+
+const config = require('./config/config');
+
+// const port = 3001;
+const port = config.node.port;
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
