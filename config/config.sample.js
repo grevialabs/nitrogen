@@ -11,12 +11,16 @@ var config = {
         start: 0,
 		limit: 10
     },
-    env: 'dev',
-    debug : true,
-    node : {
-        host: '127.0.0.1',
-        port: 3001,
-    }
+    model: {
+        start: 0,
+		limit: 10
+    },
+	server: {
+		host: '127.0.0.1',
+		port: '3001'
+	},
+	secret: 'supersecret',
+	environment: 'dev', 
 
 }
 

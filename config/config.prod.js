@@ -1,5 +1,5 @@
 var config = {
-	database: {
+	db: {
 		host:	  '128.199.223.13', 	// database host
 		user: 	  'rusdi.grevia', 		// your database username
 		password: 'rusdi!@#$2012', 		// your database password
@@ -12,9 +12,10 @@ var config = {
     },
 	server: {
 		host: '127.0.0.1',
-		port: '3000'
+		port: '3001'
 	},
-	secret : 'supersecret'
+	secret: 'supersecret',
+	environment: 'dev', 
 }
 
 module.exports = config
