@@ -6,110 +6,90 @@ const constant = require('../helpers/Constants');
 
 /* GET all users params {key,start,limit} */
 router.get('/getList', function(req, res, next) {
-    Key.check(req.query.key, function(err,rows) {
-        if(rows.length > 0) { // key success
-            User.getList(
-                Number(req.query.start), 
-                Number(req.query.limit), 
-                function(errRes,rowsRes) {
-                    if(errRes) {
-                        res.json(errRes);
-                    } else {
-                        res.json(rowsRes);
-                    }
-                }
-            );
-        } else { // key failed
-            res.render('unauthorized', { title: 'Unauthorized' });
+    var start, limit = 0;
+    if (req.query.start) start = req.query.start; 
+    if (req.query.limit) limit = req.query.limit;
+
+    User.getList(
+        Number(start), 
+        Number(limit), 
+        function(errRes,rows) {
+            if(errRes) {
+                res.json(errRes);
+            } else {
+                // var data = new Array();
+                var data = {};
+                data = rows;
+                // console.log(rows);
+                res.json(data);
+                // res.send(data);
+                // res.json(JSON.stringify(data));
+            }
         }
-    });    
+    );
+           
 });
 
 /* GET user by ID params {key,id} */
 router.get('/get', function(req, res, next) {
-    Key.check(req.query.key, function(err,rows) {
-        if(rows.length > 0) { // key success
-            User.get(
-                Number(req.query.id), 
-                function(errRes,rowsRes) {
-                    if(errRes) {
-                        res.json(errRes);
-                    } else {
-                        res.json(rowsRes);
-                    }
-                }
-            );
-        } else { // key failed
-            res.render('unauthorized', { title: 'Unauthorized' });
+    User.get(
+        Number(req.query.id), 
+        function(errRes,rows) {
+            if(errRes) {
+                res.json(errRes);
+            } else {
+                res.json(rows);
+            }
         }
-    });
+    );
 });
 
 /* POST add user params {key,name,email,password} */
-router.post('/add', function(req,res,next) {
-    Key.check(req.body.key, function(err,rows) {
-        if(rows.length > 0) { // key success
-            User.addUser(
-                {
-                    name: req.body.name,
-                    email: req.body.email,
-                    password: req.body.password
-                },
-                function(errRes,rowsRes) {
-                    if(errRes) {
-                        res.json(errRes);
-                    } else {
-                        res.json(rowsRes);
-                    }
-                }
-            );
-        } else { // key failed
-            res.render('unauthorized', { title: 'Unauthorized' });
+router.post('/insert', function(req,res,next) {
+    User.insertUser(
+        {
+            name: req.body.name,
+            email: req.body.email,
+            password: req.body.password
+        },
+        function(errRes,rows) {
+            if(errRes) {
+                res.json(errRes);
+            } else {
+                res.json(rows);
+            }
         }
-    });
+    );
 });
 
 /* UPDATE user params {key,id,name,email,password} */
 router.put('/update',function(req,res,next) {
-    Key.check(req.body.key, function(err,rows) {
-        if(rows.length > 0) { // key success
-            User.updateUser(
-                {
-                    name: req.body.name,
-                    email: req.body.email,
-                    password: req.body.password,
-                    id: req.body.id
-                },
-                function(errRes,rowsRes) {
-                    if(errRes) {
-                        res.json(errRes);
-                    } else {
-                        res.json(rowsRes);
-                    }
-                }
-            );
-        } else { // key failed
-            res.render('unauthorized', { title: 'Unauthorized' });
+    User.updateUser(
+        {
+            name: req.body.name,
+            email: req.body.email,
+            password: req.body.password,
+            id: req.body.id
+        },
+        function(errRes,rows) {
+            if(errRes) {
+                res.json(errRes);
+            } else {
+                res.json(rows);
+            }
         }
-    });
+    );
 });
 
 /* DELETE user params {key,id} */
 router.delete('/delete',function(req,res,next) {
-    Key.check(req.body.key, function(err,rows) {
-        if(rows.length > 0) { // key success
-            User.deleteUser(req.body.id, function(errRes,rowsRes) {
-                if(errRes) {
-                    res.json(errRes);
-                } else {
-                    res.json(rowsRes);
-                }
-            });
-        } else { // key failed
-            res.render('unauthorized', { title: 'Unauthorized' });
+    User.deleteUser(req.body.id, function(errRes,rows) {
+        if(errRes) {
+            res.json(errRes);
+        } else {
+            res.json(rows);
         }
     });
 });
-
 
 module.exports = router;

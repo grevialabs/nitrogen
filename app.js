@@ -20,6 +20,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+/* Middleware auth check token start */
+checkAuth = require('./middleware/Auth');
+app.use(checkAuth);
+/* Middleware auth check token end */
+
 /* Routes */
 const v1 = '/v1/';
 // app.use('/v1', v1);

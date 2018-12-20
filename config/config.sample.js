@@ -5,7 +5,11 @@ var config = {
         user: 'admin',
         password: 'admin',
         database: 'apinode',
-        port: 3306
+        port: 3306,
+    },
+    model: {
+        start: 0,
+		limit: 10
     },
     env: 'dev',
     debug : true,
@@ -13,6 +17,7 @@ var config = {
         host: '127.0.0.1',
         port: 3001,
     }
+
 }
 
 module.exports = config
