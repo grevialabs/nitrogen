@@ -13,12 +13,12 @@ var auth = function(req, res, next) {
     } else {
       // Invalid key
       // res.render('unauthorized', { title: 'Unauthorized' });
-      var resp = {};
-      resp['is_ok'] = 1;
-      resp['message'] = 'gagal';
+      // var resp = {};
+      // resp['is_ok'] = 'no';
+      // resp['message'] = 'invalid token';
       // res.end(res.JSON(resp));
       // res.end('yamete');
-      res.end(JSON.stringify(resp));
+      // res.end(JSON.stringify(resp));
     }
   })
 }

@@ -6,6 +6,7 @@ const constant = require('../helpers/Constants');
 
 /* GET all users params {key,start,limit} */
 router.get('/getList', function(req, res, next) {
+    console.log('ayamgoreng');
     var start, limit = 0;
     if (req.query.start) start = req.query.start; 
     if (req.query.limit) limit = req.query.limit;

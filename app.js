@@ -21,8 +21,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 /* Middleware auth check token start */
-checkAuth = require('./middleware/Auth');
-app.use(checkAuth);
+// checkAuth = require('./middleware/Auth');
+// app.use(checkAuth);
 /* Middleware auth check token end */
 
 /* Routes */
@@ -32,9 +32,13 @@ const v1 = '/v1/';
 // console.log
 
 const index = require('./routes/Index');
-app.use(v1 + 'index', index);
 
+// ------------------
+// API here
 const users = require('./routes/Users');
+// ------------------
+
+app.use(v1 + 'index', index);
 app.use(v1 + 'users', users);
 
 /* Export to server.js */
