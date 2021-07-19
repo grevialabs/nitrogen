@@ -5,16 +5,17 @@ const Key = require('../models/Key');
 const constant = require('../helpers/Constants');
 
 /* GET all users params {key,start,limit} */
-router.get('/getList', function(req, res, next) {
+// router.get('/getList', function(req, res, next) {
+router.get('/get_all_users', function (req, res, next) {
     var start, limit = 0;
-    if (req.query.start) start = req.query.start; 
+    if (req.query.start) start = req.query.start;
     if (req.query.limit) limit = req.query.limit;
 
     User.getList(
-        Number(start), 
-        Number(limit), 
-        function(errRes,rows) {
-            if(errRes) {
+        Number(start),
+        Number(limit),
+        function (errRes, rows) {
+            if (errRes) {
                 res.json(errRes);
             } else {
                 // var data = new Array();
@@ -27,15 +28,15 @@ router.get('/getList', function(req, res, next) {
             }
         }
     );
-           
+
 });
 
 /* GET user by ID params {key,id} */
-router.get('/get', function(req, res, next) {
+router.get('/get', function (req, res, next) {
     User.get(
-        Number(req.query.id), 
-        function(errRes,rows) {
-            if(errRes) {
+        Number(req.query.id),
+        function (errRes, rows) {
+            if (errRes) {
                 res.json(errRes);
             } else {
                 res.json(rows);
@@ -45,15 +46,15 @@ router.get('/get', function(req, res, next) {
 });
 
 /* POST add user params {key,name,email,password} */
-router.post('/insert', function(req,res,next) {
+router.post('/insert', function (req, res, next) {
     User.insertUser(
         {
             name: req.body.name,
             email: req.body.email,
             password: req.body.password
         },
-        function(errRes,rows) {
-            if(errRes) {
+        function (errRes, rows) {
+            if (errRes) {
                 res.json(errRes);
             } else {
                 res.json(rows);
@@ -63,7 +64,7 @@ router.post('/insert', function(req,res,next) {
 });
 
 /* UPDATE user params {key,id,name,email,password} */
-router.put('/update',function(req,res,next) {
+router.put('/update', function (req, res, next) {
     User.updateUser(
         {
             name: req.body.name,
@@ -71,8 +72,8 @@ router.put('/update',function(req,res,next) {
             password: req.body.password,
             id: req.body.id
         },
-        function(errRes,rows) {
-            if(errRes) {
+        function (errRes, rows) {
+            if (errRes) {
                 res.json(errRes);
             } else {
                 res.json(rows);
@@ -82,9 +83,9 @@ router.put('/update',function(req,res,next) {
 });
 
 /* DELETE user params {key,id} */
-router.delete('/delete',function(req,res,next) {
-    User.deleteUser(req.body.id, function(errRes,rows) {
-        if(errRes) {
+router.delete('/delete', function (req, res, next) {
+    User.deleteUser(req.body.id, function (errRes, rows) {
+        if (errRes) {
             res.json(errRes);
         } else {
             res.json(rows);

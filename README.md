@@ -1,3 +1,9 @@
+HOW to run
+$ nodemon server
+
+URL
+http://localhost:3001/v1/users/get?key=keyfordevelopment&start=0&limit=10
+
 ### NodeJS / Express / MySQL
 A simple way to build express restful api and mysql server.
 1. Run `npm install` first to initiate node modules
@@ -11,7 +17,8 @@ Query string of URL to request and handling each params
 
 **example :**
 
-`http://localhost:3000/users/get_all_users?key=keyfordevelopment&start=0&limit=10`
+`http://localhost:3001/users/get_all_users?key=keyfordevelopment&start=0&limit=10`
+
 
 ### Route / Method
 Define your methods depends on controller name
